@@ -149,7 +149,35 @@ def analysis():
 
     plt.show()
 
+def feature_data():
+    data = pd.read_csv("data/House_PricesV1.csv")
+    dataF = pd.read_csv("data/saleprice_ronds.csv")
 
+    dataF["TotalSF"] = dataF["GrLivArea"] + dataF["TotalBsmtSF"]
+
+    dataF["TotalBath"] = (
+        dataF["FullBath"] + 0.5 * dataF["HalfBath"] +
+        dataF["BsmtFullBath"] + 0.5 * dataF["BsmtHalfBath"]
+    )
+
+    dataF["HouseAge"] = dataF["YrSold"] - dataF["YearBuilt"]
+
+    dataF["YearsSinceRemod"] = dataF["YrSold"] - dataF["YearRemodAdd"]
+    dataF.to_csv("data/dataFeature.csv", index=False)
+
+    # numeric_df = data.select_dtypes(include="number").drop(columns=["Id"], errors="ignore")
+    # corr = numeric_df.corr()
+    # plt.figure(figsize=(14, 10))
+    
+    # sns.heatmap(
+    #     corr,
+    #     cmap="coolwarm",
+    #     center=0
+    # )
+    
+    # plt.title("Matrice de corrélation")
+    
+    # plt.show()
     
 
-analysis()
+feature_data()
