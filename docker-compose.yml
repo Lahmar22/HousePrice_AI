@@ -4,7 +4,7 @@ services:
       context: .
       dockerfile: Dockerfile
     image: houseprice-app:latest
-    command: python src/app.py
+    command: python notebooks/exploration_data.py
     ports:
       - "8000:8000"
     volumes:
