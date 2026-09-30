@@ -8,7 +8,11 @@ import numpy as np
 
 def getData():
     data = pd.read_csv("data/House_Prices.csv")
-    return data
+
+    
+    
+    print(data.groupby("OverallQual").agg({"SalePrice": "min"}))
+    
 
 
 def preparation_Data():
@@ -180,4 +184,4 @@ def feature_data():
     # plt.show()
     
 
-feature_data()
+analysis()
