@@ -201,4 +201,37 @@ joblib.dump(
     "models/house_price_model.pkl"
 )
 
+model_bundle = {
+    "Régression linéaire": {
+        "model": pipeline_lr,
+        "mae": mae_lr,
+        "rmse": rmse_lr,
+        "r2": r2_lr,
+        "target_transform": "log1p",
+    },
+    "Random Forest": {
+        "model": pipeline_rf,
+        "mae": mae_rf,
+        "rmse": rmse_rf,
+        "r2": r2_rf,
+        "target_transform": "price",
+    },
+    "SVR": {
+        "model": pipeline_svr,
+        "mae": mae_svr,
+        "rmse": rmse_svr,
+        "r2": r2_svr,
+        "target_transform": "log1p",
+    },
+    "Random Forest optimisée": {
+        "model": best_model,
+        "mae": mae,
+        "rmse": rmse,
+        "r2": r2,
+        "target_transform": "price",
+    },
+}
+
+joblib.dump(model_bundle, "models/house_price_models.pkl", compress=3)
+
 print("Modèle sauvegardé avec succès.")
